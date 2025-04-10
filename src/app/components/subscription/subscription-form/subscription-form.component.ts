@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SubscribeButtonComponent } from '../subscribe-button/subscribe-button.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-subscription-form',
@@ -15,6 +16,7 @@ export class SubscriptionFormComponent implements OnInit {
   availableDays: number[] = [];
   availableYears: number[] = [];
   submitted = false;
+  isLoading = false;
   months = [
     { value: 1, name: 'January' },
     { value: 2, name: 'February' },
@@ -119,7 +121,7 @@ export class SubscriptionFormComponent implements OnInit {
 
     if (month && year) {
       const daysInMonth = new Date(year, month, 0).getDate();
-      this.availableDays = Array.from({length: daysInMonth}, (_, i) => i + 1);
+      this.availableDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
       // If the currently selected day is greater than the days in the new month, reset it
       if (currentDay > daysInMonth) {
@@ -138,22 +140,40 @@ export class SubscriptionFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    
+
     if (this.subscriptionForm.valid) {
-      console.log(this.subscriptionForm.value);
-      // Handle form submission
+      this.isLoading = true;
+
+      // Simulate API call (replace with actual API call)
+      setTimeout(() => {
+        this.isLoading = false;
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your subscription has been processed successfully',
+          icon: 'success',
+          confirmButtonText: 'Continue to Payment',
+          confirmButtonColor: '#896af9',
+          showCancelButton: true,
+          cancelButtonText: 'Close',
+          cancelButtonColor: '#6B7280',
+          position: 'top',
+          toast: true,
+          timer: 5000,
+          timerProgressBar: true,
+          backdrop: false
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Handle payment navigation
+            console.log('Proceeding to payment...');
+          }
+        });
+      }, 1500);
     } else {
       this.markFormGroupTouched(this.subscriptionForm);
-      
-      // Show validation messages for each invalid field
-      const invalidFields = this.getInvalidFields(this.subscriptionForm);
-      if (invalidFields.length > 0) {
-        const errorMessage = this.formatValidationErrors(invalidFields);
-        // You can use a toast or alert service here to show the message
-
-      }
     }
   }
+
+
 
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
@@ -170,7 +190,7 @@ export class SubscriptionFormComponent implements OnInit {
 
     const errors = Object.keys(control.errors);
     const messages = this.validationMessages[fieldName as keyof typeof this.validationMessages];
-    
+
     return messages[errors[0] as keyof typeof messages] || 'Invalid field';
   }
 
@@ -196,53 +216,6 @@ export class SubscriptionFormComponent implements OnInit {
     return !!control && control.invalid && (control.touched || this.submitted);
   }
 
-  getInvalidFields(formGroup: FormGroup, path: string = ''): { path: string; errors: any }[] {
-    let invalidFields: { path: string; errors: any }[] = [];
-    
-    Object.keys(formGroup.controls).forEach(key => {
-      const control = formGroup.get(key);
-      const currentPath = path ? `${path}.${key}` : key;
-      
-      if (control instanceof FormGroup) {
-        invalidFields = invalidFields.concat(this.getInvalidFields(control, currentPath));
-      } else if (control?.invalid && (control.touched || this.submitted)) {
-        invalidFields.push({
-          path: currentPath,
-          errors: control.errors
-        });
-      }
-    });
-    
-    return invalidFields;
-  }
 
-  formatValidationErrors(invalidFields: { path: string; errors: any }[]): string {
-    const errorMessages = invalidFields.map(field => {
-      const fieldName = this.getFieldDisplayName(field.path);
-      const errorKeys = Object.keys(field.errors);
-      const messages = errorKeys.map(errorKey => {
-        const message = this.validationMessages[field.path.split('.').pop() as keyof typeof this.validationMessages]?.[errorKey as keyof typeof this.validationMessages];
-        return message || `${fieldName} is invalid`;
-      });
-      return `${fieldName}: ${messages.join(', ')}`;
-    });
-    
-    return 'Please correct the following errors:\n' + errorMessages.join('\n');
-  }
 
-  getFieldDisplayName(path: string): string {
-    const fieldNames: { [key: string]: string } = {
-      'contactInfo.name': 'Parent Name',
-      'contactInfo.email': 'Email',
-      'childInfo.fullName': 'Child\'s Full Name',
-      'childInfo.dateOfBirth.day': 'Day of Birth',
-      'childInfo.dateOfBirth.month': 'Month of Birth',
-      'childInfo.dateOfBirth.year': 'Year of Birth',
-      'childInfo.grade': 'Grade',
-      'childInfo.gender': 'Gender',
-      'selectedTopics': 'Topics'
-    };
-    
-    return fieldNames[path] || path.split('.').pop() || path;
-  }
 }
