@@ -1,0 +1,93 @@
+/* Cross-browser compatibility styles */
+
+/* Custom text size fallback */
+.text-\[56px\] {
+  font-size: 56px;
+  /* Fallback for older browsers */
+  font-size: calc(2.5rem + 1.5vw);
+}
+
+/* Custom background color fallback */
+.bg-\[\#FFF9E6\] {
+  background-color: #FFF9E6;
+  /* Fallback for older browsers */
+  background-color: rgb(255, 249, 230);
+}
+
+/* Size utility fallback */
+.size-24 {
+  width: 6rem;
+  height: 6rem;
+  /* Fallback for older browsers */
+  width: 96px;
+  height: 96px;
+}
+
+/* Flexbox fallbacks */
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Grid fallbacks */
+.grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+/* Gap utility fallbacks */
+.gap-6 {
+  gap: 1.5rem;
+  /* Fallback for older browsers */
+  margin: 1.5rem;
+}
+
+/* Transition fallbacks */
+.transition-colors {
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
+}
+
+/* Transform fallbacks */
+.transform {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Backdrop filter fallbacks */
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Custom properties fallbacks */
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
+}
+
+/* Media query fallbacks */
+@media screen and (max-width: 768px) {
+  .md\:p-16 {
+    padding: 4rem;
+  }
+  .md\:pt-0 {
+    padding-top: 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+} 
