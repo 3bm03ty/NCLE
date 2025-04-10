@@ -1,0 +1,48 @@
+<div
+  class="bg-[url('assets/svgs/discover_bg.svg')] bg-[#FFF9E6] text-black bg-cover bg-center bg-no-repeat min-h-screen w-full py-28 p-8 md:p-16 text-center">
+  <div class="flex flex-col gap-20">
+    <div class="max-w-3xl mx-auto">
+      <div class="section-title">
+        <h2 class="mb-4 font-semibold text-base leading-paragraph">
+          Discover
+        </h2>
+        <div class="content grid gap-6">
+          <h3 class="text-5xl font-bold leading-heading">How It Works: Subscribe and Receive Your Surprise Box</h3>
+          <p class="text-2xl leading-paragraph">Subscribe to our surprise subscription box and give your child the gift
+            of learning. Each month, we curate
+            a box filled with educational materials tailored to your child's age and interests.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid  gap-12">
+      <div class="grid gap-12">
+        <div class="grid lg:grid-cols-3 gap-12 justify-center">
+          <div class="col-span-1 grid gap-6 max-w-lg">
+            <div class="mx-auto size-24 rounded-full bg-white flex items-center justify-center">
+              <img src="assets/svgs/subscribe.svg" alt="">
+            </div>
+            <h4 class="text-[32px] font-bold">Step 1:<br>Subscribe</h4>
+            <p>Select a subscription plan that suits your child's learning needs and preferences.</p>
+          </div>
+          <div class="col-span-1 grid gap-6 max-w-lg justify-center">
+            <div class="mx-auto size-24 rounded-full bg-white flex items-center justify-center">
+              <img src="assets/svgs/customize.svg" alt="">
+            </div>
+            <h4 class="text-[32px] font-bold">Step 2:<br>Personalise Your Box</h4>
+            <p>Tell us about your child's age, interests, and learning goals, and we'll customize their surprise box
+              accordingly.</p>
+          </div>
+          <div class="col-span-1 grid gap-6 max-w-lg justify-center">
+            <div class="mx-auto size-24 rounded-full bg-white flex items-center justify-center">
+              <img src="assets/svgs/surprise.svg" alt="">
+            </div>
+            <h4 class="text-[32px] font-bold">Step 3:<br>Receive Your Surprise Box</h4>
+            <p>Sit back and relax as your child eagerly awaits the arrival of their monthly surprise box filled with
+              engaging learning materials.</p>
+          </div>
+        </div>
+        <app-subscribe-button (onClick)="navigateToSubscription()"></app-subscribe-button>
+      </div>
+    </div>
+  </div>
+</div>
