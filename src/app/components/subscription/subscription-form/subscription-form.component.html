@@ -19,13 +19,21 @@
             <div class="space-y-2">
               <label for="parentName" class="block text-sm font-medium text-gray-700">Your Name</label>
               <input id="parentName" type="text" formControlName="name" placeholder="e.g Salama Abdullah"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-[#202124]">
+                [class]="'w-full p-3 border rounded-lg focus:outline-none bg-white text-[#202124] ' + 
+                (isFieldInvalid('contactInfo.name') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
+              <p *ngIf="isFieldInvalid('contactInfo.name')" class="mt-1 text-sm text-red-500">
+                {{ getErrorMessage(subscriptionForm.get('contactInfo.name'), 'name') }}
+              </p>
             </div>
 
             <div class="space-y-2">
               <label for="parentEmail" class="block text-sm font-medium text-gray-700">Email</label>
               <input id="parentEmail" type="email" formControlName="email" placeholder="Example@gmail.com"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-[#202124]">
+                [class]="'w-full p-3 border rounded-lg focus:outline-none bg-white text-[#202124] ' + 
+                (isFieldInvalid('contactInfo.email') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
+              <p *ngIf="isFieldInvalid('contactInfo.email')" class="mt-1 text-sm text-red-500">
+                {{ getErrorMessage(subscriptionForm.get('contactInfo.email'), 'email') }}
+              </p>
             </div>
           </div>
 
@@ -36,7 +44,11 @@
             <div class="space-y-2">
               <label for="childName" class="block text-sm font-medium text-gray-700">Child's Full Name</label>
               <input id="childName" type="text" formControlName="fullName" placeholder="e.g Sarah Mohammed"
-                class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-[#202124]">
+                [class]="'w-full p-3 border rounded-lg focus:outline-none bg-white text-[#202124] ' + 
+                (isFieldInvalid('childInfo.fullName') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
+              <p *ngIf="isFieldInvalid('childInfo.fullName')" class="mt-1 text-sm text-red-500">
+                {{ getErrorMessage(subscriptionForm.get('childInfo.fullName'), 'fullName') }}
+              </p>
             </div>
 
             <div formGroupName="dateOfBirth" class="space-y-2">
@@ -44,7 +56,8 @@
               <div class="grid grid-cols-3 gap-4">
                 <div class="relative">
                   <select id="birthDay" formControlName="day"
-                    class="w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none">
+                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                    (isFieldInvalid('childInfo.dateOfBirth.day') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
                     <option value="" disabled selected>Day</option>
                     <option *ngFor="let day of availableDays" [value]="day">{{day.toString().padStart(2, '0')}}</option>
                   </select>
@@ -53,11 +66,15 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
+                  <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.day')" class="text-sm text-red-500">
+                    {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.day'), 'day') }}
+                  </p>
                 </div>
 
                 <div class="relative">
                   <select id="birthMonth" formControlName="month"
-                    class="w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none">
+                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                    (isFieldInvalid('childInfo.dateOfBirth.month') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
                     <option value="" disabled selected>Month</option>
                     <option *ngFor="let month of months" [value]="month.value">{{month.name}}</option>
                   </select>
@@ -66,11 +83,15 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
+                  <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.month')" class="text-sm text-red-500">
+                    {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.month'), 'month') }}
+                  </p>
                 </div>
 
                 <div class="relative">
                   <select id="birthYear" formControlName="year"
-                    class="w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none">
+                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                    (isFieldInvalid('childInfo.dateOfBirth.year') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
                     <option value="" disabled selected>Year</option>
                     <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
                   </select>
@@ -79,6 +100,9 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
+                  <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.year')" class="text-sm text-red-500">
+                    {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.year'), 'year') }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -86,20 +110,25 @@
             <div class="space-y-2">
               <label for="grade" class="block text-sm font-medium text-gray-700">Grade</label>
               <select id="grade" formControlName="grade"
-                class="w-full p-3 border rounded-lg focus:outline-none bg-white text-[#202124]">
+                [class]="'w-full p-3 border rounded-lg focus:outline-none bg-white text-[#202124] ' + 
+                (isFieldInvalid('childInfo.grade') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
                 <option value="">e.g Grade 2</option>
                 <option *ngFor="let grade of [].constructor(12); let i = index" [value]="'Grade ' + (i + 1)">Grade {{i +
                   1}}
                 </option>
               </select>
+              <p *ngIf="isFieldInvalid('childInfo.grade')" class="mt-1 text-sm text-red-500">
+                {{ getErrorMessage(subscriptionForm.get('childInfo.grade'), 'grade') }}
+              </p>
             </div>
 
             <div class="space-y-2">
               <label id="genderLabel" class="block text-sm font-medium text-gray-700">Gender</label>
               <div class="grid grid-cols-2 gap-4" role="group" aria-labelledby="genderLabel">
-                <button type="button" [class]="'w-full py-2.5 px-3.5 rounded-lg border border-solid flex justify-between items-center  border-gray-300 transition-colors ' + 
+                <button type="button" [class]="'w-full py-2.5 px-3.5 rounded-lg border border-solid flex justify-between items-center transition-colors ' + 
                   (subscriptionForm.get('childInfo.gender')?.value === 'Boy' ? 
-                  'border-primary text-primary bg-[#F4F1FE]' : 'bg-white text-[#202124]')"
+                  'border-primary text-primary bg-[#F4F1FE]' : 'border-gray-300 bg-white text-[#202124]') + 
+                  (isFieldInvalid('childInfo.gender') ? ' border-red-500' : '')"
                   (click)="subscriptionForm.patchValue({childInfo: {gender: 'Boy'}})" id="genderBoy"
                   [attr.aria-pressed]="subscriptionForm.get('childInfo.gender')?.value === 'Boy'">
                   Boy
@@ -109,9 +138,10 @@
                       [attr.fill]="subscriptionForm.get('childInfo.gender')?.value === 'Boy' ?  '#896af9 ' : '#D0D5DD'" />
                   </svg>
                 </button>
-                <button type="button" [class]="'w-full py-2.5 px-3.5 rounded-lg border border-solid flex justify-between items-center  border-gray-300 transition-colors ' + 
+                <button type="button" [class]="'w-full py-2.5 px-3.5 rounded-lg border border-solid flex justify-between items-center transition-colors ' + 
                   (subscriptionForm.get('childInfo.gender')?.value === 'Girl' ? 
-                  'border-primary text-primary bg-[#F4F1FE]' : 'bg-white text-[#202124]')"
+                  'border-primary text-primary bg-[#F4F1FE]' : 'border-gray-300 bg-white text-[#202124]') + 
+                  (isFieldInvalid('childInfo.gender') ? ' border-red-500' : '')"
                   (click)="subscriptionForm.patchValue({childInfo: {gender: 'Girl'}})" id="genderGirl"
                   [attr.aria-pressed]="subscriptionForm.get('childInfo.gender')?.value === 'Girl'">
                   Girl
@@ -122,6 +152,9 @@
                   </svg>
                 </button>
               </div>
+              <p *ngIf="isFieldInvalid('childInfo.gender')" class="mt-1 text-sm text-red-500">
+                {{ getErrorMessage(subscriptionForm.get('childInfo.gender'), 'gender') }}
+              </p>
             </div>
           </div>
 
@@ -131,11 +164,16 @@
             <div class="flex flex-wrap gap-3" role="group" aria-labelledby="topicsLabel">
               <button type="button" *ngFor="let topic of topics; let i = index" [id]="'topic' + i"
                 [class]="'px-5 py-1 rounded-full border transition-colors border-solid ' + 
-                (isTopicSelected(topic) ? 'bg-[#F4F1FE] text-[#6633FF]  border-[#6633FF]' : 'bg-white text-gray-500  border-[#E1E3E6]')" (click)="onTopicSelect(topic)"
+                (isTopicSelected(topic) ? 'bg-[#F4F1FE] text-[#6633FF]  border-[#6633FF]' : 'bg-white text-gray-500  border-[#E1E3E6]') + 
+                (isFieldInvalid('selectedTopics') ? ' border-red-500' : '')" 
+                (click)="onTopicSelect(topic)"
                 [attr.aria-pressed]="isTopicSelected(topic)">
                 {{topic}}
               </button>
             </div>
+            <p *ngIf="isFieldInvalid('selectedTopics')" class="mt-1 text-sm text-red-500">
+              {{ getErrorMessage(subscriptionForm.get('selectedTopics'), 'selectedTopics') }}
+            </p>
           </div>
         </div>
 
