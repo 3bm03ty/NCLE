@@ -54,56 +54,64 @@
             <div formGroupName="dateOfBirth" class="space-y-2">
               <label for="birthDay" class="block text-sm font-medium text-gray-700">Child's Date of Birth</label>
               <div class="grid grid-cols-3 gap-4">
-                <div class="relative">
-                  <select id="birthDay" formControlName="day"
-                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                <div>
+                  <div class="relative">
+                    <select id="birthDay" formControlName="day"
+                      [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
                     (isFieldInvalid('childInfo.dateOfBirth.day') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
-                    <option value="" disabled selected>Day</option>
-                    <option *ngFor="let day of availableDays" [value]="day">{{day.toString().padStart(2, '0')}}</option>
-                  </select>
-                  <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                      <option value="" disabled selected>Day</option>
+                      <option *ngFor="let day of availableDays" [value]="day">{{day.toString().padStart(2, '0')}}
+                      </option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
                   </div>
                   <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.day')" class="text-sm text-red-500">
                     {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.day'), 'day') }}
                   </p>
                 </div>
 
-                <div class="relative">
-                  <select id="birthMonth" formControlName="month"
-                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
-                    (isFieldInvalid('childInfo.dateOfBirth.month') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
-                    <option value="" disabled selected>Month</option>
-                    <option *ngFor="let month of months" [value]="month.value">{{month.name}}</option>
-                  </select>
-                  <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                <div>
+                  <div class="relative">
+                    <select id="birthMonth" formControlName="month"
+                      [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                      (isFieldInvalid('childInfo.dateOfBirth.month') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
+                      <option value="" disabled selected>Month</option>
+                      <option *ngFor="let month of months" [value]="month.value">{{month.name}}</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
                   </div>
                   <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.month')" class="text-sm text-red-500">
                     {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.month'), 'month') }}
                   </p>
                 </div>
 
-                <div class="relative">
-                  <select id="birthYear" formControlName="year"
-                    [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
-                    (isFieldInvalid('childInfo.dateOfBirth.year') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
-                    <option value="" disabled selected>Year</option>
-                    <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
-                  </select>
-                  <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                <div>
+                  <div class="relative">
+                    <select id="birthYear" formControlName="year"
+                      [class]="'w-full p-3 pr-10 border rounded-lg focus:outline-none bg-white text-gray-500 appearance-none ' + 
+                      (isFieldInvalid('childInfo.dateOfBirth.year') ? 'border-red-500 focus:ring-red-500' : 'focus:ring-2 focus:ring-primary border-gray-300')">
+                      <option value="" disabled selected>Year</option>
+                      <option *ngFor="let year of availableYears" [value]="year">{{year}}</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
                   </div>
                   <p *ngIf="isFieldInvalid('childInfo.dateOfBirth.year')" class="text-sm text-red-500">
                     {{ getErrorMessage(subscriptionForm.get('childInfo.dateOfBirth.year'), 'year') }}
                   </p>
                 </div>
+
               </div>
             </div>
 
@@ -162,11 +170,9 @@
           <div class="space-y-4">
             <h3 id="topicsLabel" class="text-xl font-bold text-[#202124] mb-2">As a parent select any 3 topics</h3>
             <div class="flex flex-wrap gap-3" role="group" aria-labelledby="topicsLabel">
-              <button type="button" *ngFor="let topic of topics; let i = index" [id]="'topic' + i"
-                [class]="'px-5 py-1 rounded-full border transition-colors border-solid ' + 
+              <button type="button" *ngFor="let topic of topics; let i = index" [id]="'topic' + i" [class]="'px-5 py-1 rounded-full border transition-colors border-solid ' + 
                 (isTopicSelected(topic) ? 'bg-[#F4F1FE] text-[#6633FF]  border-[#6633FF]' : 'bg-white text-gray-500  border-[#E1E3E6]') + 
-                (isFieldInvalid('selectedTopics') ? ' border-red-500' : '')" 
-                (click)="onTopicSelect(topic)"
+                (isFieldInvalid('selectedTopics') ? ' border-red-500' : '')" (click)="onTopicSelect(topic)"
                 [attr.aria-pressed]="isTopicSelected(topic)">
                 {{topic}}
               </button>
@@ -178,7 +184,8 @@
         </div>
 
         <div class="flex justify-center">
-          <app-subscribe-button class="w-full" [buttonText]="'Continue to payment'" (onClick)="onSubmit()"  [isLoading]="isLoading">
+          <app-subscribe-button class="w-full" [buttonText]="'Continue to payment'" (onClick)="onSubmit()"
+            [isLoading]="isLoading">
           </app-subscribe-button>
         </div>
       </form>
