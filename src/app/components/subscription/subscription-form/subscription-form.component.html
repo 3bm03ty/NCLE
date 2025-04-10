@@ -178,7 +178,7 @@
         </div>
 
         <div class="flex justify-center">
-          <app-subscribe-button [buttonText]="'Continue to payment'" (onClick)="onSubmit()">
+          <app-subscribe-button  [buttonText]="'Continue to payment'" (onClick)="onSubmit()"  [isLoading]="isLoading">
           </app-subscribe-button>
         </div>
       </form>
