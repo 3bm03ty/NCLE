@@ -1,4 +1,4 @@
 <button (click)="handleClick()"
-  [class]="'bg-white shadow-primary border border-[#896AF9] border-solid w-fit mx-auto text-primary px-7 py-4 rounded-3xl text-[23px] font-black hover:scale-105 transition-transform duration-200 ease-in-out ' + (isLoading ? ' cursor-not-allowed' : '')">
+  [class]="'bg-white shadow-primary border border-[#896AF9] border-solid w-fit mx-auto text-primary px-7 py-4 rounded-3xl text-[23px] font-black hover:scale-105 transition-transform duration-200 ease-in-out ' + (isLoading ? ' cursor-not-allowed' : '') + (buttonText == 'Continue to payment' ? 'w-full' : '')">
   <span>{{ isLoading ? 'Processing...' : buttonText }}</span>
 </button>
